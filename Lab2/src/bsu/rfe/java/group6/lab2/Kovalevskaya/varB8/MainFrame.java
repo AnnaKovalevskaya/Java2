@@ -252,7 +252,58 @@ public class MainFrame extends JFrame {
         });
 
 
-        
+        JButton buttonDel = new JButton("MC");
+        buttonDel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                if (variableId == 1) {
+                    mem1 = 0;
+                    textFieldMem1.setText(String.valueOf(mem1));
+                }
+                if (variableId == 2) {
+                    mem2 = 0;
+                    textFieldMem2.setText(String.valueOf(mem2));
+                }
+                if (variableId == 3) {
+                    mem3 = 0;
+                    textFieldMem3.setText(String.valueOf(mem3));
+                }
+
+            }
+        });
+
+        JButton buttonSum = new JButton("M+");
+        buttonSum.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                try {
+                    Double x = Double.parseDouble(textFieldX.getText());
+                    Double y = Double.parseDouble(textFieldY.getText());
+                    Double z = Double.parseDouble(textFieldZ.getText());
+                    mem1 = Double.parseDouble(textFieldMem1.getText());
+                    mem2 = Double.parseDouble(textFieldMem2.getText());
+                    mem3 = Double.parseDouble(textFieldMem3.getText());
+                    Double result;
+                    if (variableId == 1) {
+                        if (formulaId == 1) result = mem1 + calculate1(x, y, z);
+                        else result = mem1 + calculate2(x, y, z);
+                        textFieldMem1.setText(String.valueOf(result));
+                    }
+                    if (variableId == 2) {
+                        if (formulaId == 1) result = mem2 + calculate1(x, y, z);
+                        else result = mem2 + calculate2(x, y, z);
+                        textFieldMem2.setText(result.toString());
+                    }
+                    if (variableId == 3) {
+                        if (formulaId == 1) result = mem3 + calculate1(x, y, z);
+                        else result = mem3 + calculate2(x, y, z);
+                        textFieldMem3.setText(result.toString());
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(MainFrame.this, "Floating-point writing format error",
+                            "Wrong number format", JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
+        });
 
      // Создать кнопку «Очистить поля»
         JButton buttonReset = new JButton("Clear fields");
